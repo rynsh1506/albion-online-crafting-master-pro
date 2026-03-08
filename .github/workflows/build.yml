@@ -31,7 +31,11 @@ jobs:
       - name: Build with PyInstaller (Windows)
         if: matrix.os == 'windows-latest'
         run: |
-          pyinstaller --noconsole --onefile --add-data "logo1.png;." --add-data "logo2.png;." --collect-all customtkinter --name "CraftingMasterPro-Win" main.py
+          pyinstaller --noconsole --onefile \
+          --icon="logo.ico" \
+          --add-data "logo1.png;." --add-data "logo2.png;." --add-data "logo.ico;." \
+          --collect-all customtkinter \
+          --name "CraftingMasterPro-Win" main.py
 
       - name: Build with PyInstaller (Linux)
         if: matrix.os == 'ubuntu-22.04'
