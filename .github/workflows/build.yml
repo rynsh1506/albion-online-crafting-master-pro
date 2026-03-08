@@ -3,7 +3,7 @@ name: Build Albion Crafting Master Pro
 on:
   push:
     tags:
-      - "v*" # Workflow jalan cuma kalau kamu bikin tag versi, misal v1.0.0
+      - "v*"
 
 jobs:
   build:
@@ -20,7 +20,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.10"
+          python-version: "3.13"
 
       - name: Install Dependencies
         run: |
@@ -34,7 +34,7 @@ jobs:
           pyinstaller --noconsole --onefile --add-data "logo1.png;." --add-data "logo2.png;." --collect-all customtkinter --name "CraftingMasterPro-Win" main.py
 
       - name: Build with PyInstaller (Linux)
-        if: matrix.os == 'ubuntu-latest'
+        if: matrix.os == 'ubuntu-22.04' # SUDAH DIPERBAIKI
         run: |
           pyinstaller --noconsole --onefile --add-data "logo1.png:." --add-data "logo2.png:." --collect-all customtkinter --name "CraftingMasterPro-Linux" main.py
 
@@ -47,6 +47,8 @@ jobs:
   release:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Download all artifacts
         uses: actions/download-artifact@v4
@@ -56,6 +58,6 @@ jobs:
         with:
           files: |
             executable-windows-latest/*
-            executable-ubuntu-latest/*
+            executable-ubuntu-22.04/* # SESUAIKAN DENGAN NAMA ARTIFACT
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
