@@ -34,9 +34,13 @@ jobs:
           pyinstaller --noconsole --onefile --add-data "logo1.png;." --add-data "logo2.png;." --collect-all customtkinter --name "CraftingMasterPro-Win" main.py
 
       - name: Build with PyInstaller (Linux)
-        if: matrix.os == 'ubuntu-22.04' # SUDAH DIPERBAIKI
+        if: matrix.os == 'ubuntu-22.04'
         run: |
-          pyinstaller --noconsole --onefile --add-data "logo1.png:." --add-data "logo2.png:." --collect-all customtkinter --name "CraftingMasterPro-Linux" main.py
+          pyinstaller --noconsole --onefile \
+          --hidden-import "PIL._tkinter_finder" \
+          --add-data "logo1.png:." --add-data "logo2.png:." \
+          --collect-all customtkinter \
+          --name "CraftingMasterPro-Linux" main.py
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
