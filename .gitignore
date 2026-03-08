@@ -1,0 +1,13 @@
+# Mengabaikan file compile Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Mengabaikan data lokal (Biar history kamu gak ke-push)
+albion_truth_data.json
+
+# Mengabaikan folder hasil build PyInstaller
+build/
+dist/
+*.spec
