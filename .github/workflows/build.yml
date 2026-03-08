@@ -58,6 +58,6 @@ jobs:
         with:
           files: |
             executable-windows-latest/*
-            executable-ubuntu-22.04/* # SESUAIKAN DENGAN NAMA ARTIFACT
+            executable-ubuntu-22.04/*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
