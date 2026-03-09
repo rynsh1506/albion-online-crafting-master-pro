@@ -26,7 +26,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install pyinstaller
+          pip install charset-normalizer pyinstaller
 
       - name: Build with PyInstaller (Windows)
         if: matrix.os == 'windows-latest'
@@ -37,6 +37,7 @@ jobs:
         run: |
           pyinstaller --noconsole --onefile \
           --hidden-import "PIL._tkinter_finder" \
+          --hidden-import "charset_normalizer" \
           --add-data "logo1.png:." --add-data "logo2.png:." \
           --collect-all customtkinter \
           --name "CraftingMasterPro-Linux" main.py

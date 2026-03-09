@@ -4,9 +4,9 @@ import platform
 
 def get_db_path():
     if platform.system() == "Windows":
-        base_dir = os.path.join(os.environ.get('APPDATA'), "AlbionCraftingMaster")
+        base_dir = os.path.join(os.environ.get('APPDATA'), "CraftingMasterPro")
     else:
-        base_dir = os.path.join(os.path.expanduser("~"), ".config", "AlbionCraftingMaster")
+        base_dir = os.path.join(os.path.expanduser("~"), ".config", "CraftingMasterPro")
 
     if not os.path.exists(base_dir):
         os.makedirs(base_dir) 
