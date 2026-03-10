@@ -5,6 +5,7 @@ __pycache__/
 *.pyd
 
 # Mengabaikan data lokal (Biar history kamu gak ke-push)
+venv/
 albion_truth_data.json
 
 # Mengabaikan folder hasil build PyInstaller

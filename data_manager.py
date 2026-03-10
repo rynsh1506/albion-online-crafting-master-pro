@@ -1,18 +1,9 @@
 import json
 import os
-import platform
 
-def get_db_path():
-    if platform.system() == "Windows":
-        base_dir = os.path.join(os.environ.get('APPDATA'), "CraftingMasterPro")
-    else:
-        base_dir = os.path.join(os.path.expanduser("~"), ".config", "CraftingMasterPro")
+from config_utils import APP_DATA_DIR
 
-    if not os.path.exists(base_dir):
-        os.makedirs(base_dir) 
-    return os.path.join(base_dir, "albion_truth_data.json")
-
-DATA_FILE = get_db_path()
+DATA_FILE = os.path.join(APP_DATA_DIR, "albion_truth_data.json")
 
 def save_to_json(data):
     with open(DATA_FILE, "w") as f: 
